@@ -38,6 +38,9 @@ program that your CPU will execute. The ROM Memory has width = 32 bits and depth
 - Data Memory
 > It has a single read/write port. If its write enable, WE, is asserted, then it writes data WD into address A on the rising edge of the clock. It reads are asynchronous while writes are synchronous to the rising edge of the “clk” signal. The Word width of the data memory is 32-bits to match the datapath width. The data memory contains 64 entries. RD is read with no respect to the clock edge. A is the memory address from which the data are read through the output port RD.
 - Sign Extend
+> Sign extension simply copies the sign bit (most
+significant bit) of a short input (16 bits) into all the
+upper bits of the longer output (32 bits).
 - Control Unit
 > The control unit computes the control signals based on the
 opcode and funct3, funct7 fields ofthe instruction, Instr14:12 and
@@ -47,5 +50,8 @@ use the funct3 and funct7 fields to determine the ALU operation.
 Thus, we will simplify our design by factoring the control unit
 into two blocks of combinational logic, as shown in the figure
 below.
+
+![CU](https://user-images.githubusercontent.com/104662487/223000559-24ba8947-3336-4d77-9d7f-d835b274af87.JPG)
+
 - Register File
 > The Register File contains the 32-bit registers. The register file has two read output ports (RD1 and RD2) and a single input write port (WD3), RD1 and RD2 are read with no respect to the clock edge. The register file is read asynchronously and written synchronously at the rising edge of the clock. The register file supports simultaneous read and writes. The register file has width = 32 bits and depth = 32 entries supports simultaneous read and writes. The register file has active low asynchronous reset signal. A1 is the register address from which the data are read through the output port RD1. Whereas A2 is corresponding to the register address of output port RD2.
