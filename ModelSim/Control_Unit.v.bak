@@ -1,0 +1,161 @@
+module Control_Unit (
+    input ZF,SF,
+    input [31:0]Instr,
+    output reg PCSrc,
+    output load,//areset,
+input areset,
+    output reg ALUSrc,
+    output reg [2:0]ALUControl,
+    output reg ResultSrc,MemWrite,
+    output reg [1:0]ImmSrc,
+    output reg RegWrite
+);
+    /*Instruction Segments*/
+    reg [6:0]OpCode;
+    reg funct7;
+    reg [2:0]funct3;
+
+    /*Intermediate bus between Main decoder and ALU decoder*/
+    reg[1:0]ALUOp;
+
+    /*Branch signal that's used to determine the correct address of the next instruction in the PC*/
+    reg Branch;
+	
+/*Connecting each instruction segment to its dedicated bus*/
+    always @(*) begin
+        OpCode=Instr[6:0];
+        funct3=Instr[14:12];
+        funct7=Instr[30];
+    end
+
+/*The main decoder block*/
+    always @(*) begin
+        case (OpCode)
+        7'b000_0011:begin /*loadWord*/
+            RegWrite=1'b1;
+            ImmSrc=2'b00;
+            ALUSrc=1'b1;
+            MemWrite=1'b0;
+            ResultSrc=1'b1;
+            Branch=1'b0;
+            ALUOp=2'b00;
+        end 
+        7'b010_0011:begin /*storeWord*/
+            RegWrite=1'b0;
+            ImmSrc=2'b01;
+            ALUSrc=1'b1;
+            MemWrite=1'b1;
+            Branch=1'b0;
+            ALUOp=2'b00;
+        end
+        7'b011_0011:begin /*R-Type*/
+            RegWrite=1'b1;
+            ALUSrc=1'b0;
+            MemWrite=1'b0;
+            ResultSrc=1'b0;
+            Branch=1'b0;
+            ALUOp=2'b10;
+        end
+        7'b001_0011:begin /*I-Type*/
+            RegWrite=1'b1;
+            ImmSrc=2'b00;
+            ALUSrc=1'b1;
+            MemWrite=1'b0;
+            ResultSrc=1'b0;
+            Branch=1'b0;
+            ALUOp=2'b10;
+        end
+        7'b110_0011:begin /*Branch Instructions*/
+            RegWrite=1'b0;
+            ImmSrc=2'b10;
+            ALUSrc=1'b0;
+            MemWrite=1'b0;
+            Branch=1'b1;
+            ALUOp=2'b01;
+        end
+            default: begin
+            RegWrite=1'b0;
+            ImmSrc=2'b00;
+            ALUSrc=1'b0;
+            MemWrite=1'b0;
+            ResultSrc=1'b0;
+            Branch=1'b0;
+            ALUOp=2'b00;
+            end
+        endcase
+    end
+
+    always @(*) begin
+        case (ALUOp)
+        2'b00:begin
+          ALUControl=3'b000;
+        end 
+        2'b01:begin
+            ALUControl=3'b010;
+        end
+        2'b10:begin
+            case (funct3)
+            3'b000:begin
+                if({OpCode[5],funct7}==2'b11)
+                /*Subtract*/
+                    ALUControl=3'b010;
+                else
+                /*ADD*/
+                    ALUControl=3'b000;
+            end 
+            3'b001:begin/*Shift Left SHL*/
+                ALUControl=3'b001;
+            end
+            3'b100:begin/*XOR*/
+                ALUControl=3'b100;
+            end
+            3'b101:begin/*Shift right SHR*/
+                ALUControl=3'b101;
+            end
+            3'b110:begin/*OR*/
+                ALUControl=3'b110;
+            end
+            3'b111:begin/*AND*/
+                ALUControl=3'b111;
+            end
+                default: begin
+                    ALUControl=3'b000;
+                end
+            endcase
+        end
+            default: begin
+                ALUControl=3'b000;
+            end
+        endcase
+    end
+
+    /*PCSrc generation*/
+    always @(*) begin
+
+        if(Branch==1'b1)
+        begin
+            case (funct3)
+            3'b000:begin /*Beq*/
+                PCSrc=Branch & ZF;
+            end 
+            3'b001:begin /*Bnq*/
+                PCSrc=Branch & ~(ZF);
+            end
+            3'b100:begin /*Blt, branch if less than*/
+                PCSrc= Branch & SF;
+            end
+                default: begin
+                    PCSrc=1'b0;
+                end
+            endcase
+        end
+        else
+        begin
+            PCSrc=1'b0;
+        end
+    end
+    
+    /*load always high*/
+    assign load=1'b1;
+    
+endmodule

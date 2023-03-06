@@ -1,0 +1,15 @@
+module Data_Memory (
+    input MemWrite,clk,
+    input [31:0]ALUResult,
+    input [31:0]WriteData,
+    output reg [31:0]ReadData
+);
+    reg [31:0]DataMem[0:63];
+    always @(posedge clk) begin
+	if(MemWrite)
+        DataMem[ALUResult[31:2]]<=WriteData;
+    end
+    always @(*) begin
+        ReadData=DataMem[ALUResult[31:2]];
+    end
+endmodule

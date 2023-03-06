@@ -1,0 +1,64 @@
+{D:/IEEE Digital/Final Project/ModelSim/RISC_V_Processor.v} {1 {vlog -work work -vopt -stats=none {D:/IEEE Digital/Final Project/ModelSim/RISC_V_Processor.v}
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module RISC_V_Processor
+
+Top level modules:
+	RISC_V_Processor
+
+} {} {}} {D:/IEEE Digital/Final Project/ModelSim/Data_Memory.v} {1 {vlog -work work -vopt -stats=none {D:/IEEE Digital/Final Project/ModelSim/Data_Memory.v}
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module Data_Memory
+
+Top level modules:
+	Data_Memory
+
+} {} {}} {D:/IEEE Digital/Final Project/ModelSim/Instruction_Memory.v} {1 {vlog -work work -vopt -stats=none {D:/IEEE Digital/Final Project/ModelSim/Instruction_Memory.v}
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module Instruction_Memory
+
+Top level modules:
+	Instruction_Memory
+
+} {} {}} {D:/IEEE Digital/Final Project/ModelSim/ALU.v} {1 {vlog -work work -vopt -stats=none {D:/IEEE Digital/Final Project/ModelSim/ALU.v}
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module ALU
+
+Top level modules:
+	ALU
+
+} {} {}} {D:/IEEE Digital/Final Project/ModelSim/RISC_V_tb.v} {1 {vlog -work work -vopt -stats=none {D:/IEEE Digital/Final Project/ModelSim/RISC_V_tb.v}
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module RISC_V_tb
+
+Top level modules:
+	RISC_V_tb
+
+} {} {}} {D:/IEEE Digital/Final Project/ModelSim/Program_Counter.v} {1 {vlog -work work -vopt -stats=none {D:/IEEE Digital/Final Project/ModelSim/Program_Counter.v}
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module Program_Counter
+
+Top level modules:
+	Program_Counter
+
+} {} {}} {D:/IEEE Digital/Final Project/ModelSim/Register_File.v} {1 {vlog -work work -vopt -stats=none {D:/IEEE Digital/Final Project/ModelSim/Register_File.v}
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module Register_File
+
+Top level modules:
+	Register_File
+
+} {} {}} {D:/IEEE Digital/Final Project/ModelSim/Control_Unit.v} {1 {vlog -work work -vopt -stats=none {D:/IEEE Digital/Final Project/ModelSim/Control_Unit.v}
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module Control_Unit
+
+Top level modules:
+	Control_Unit
+
+} {} {}} {D:/IEEE Digital/Final Project/ModelSim/Sign_Extend.v} {1 {vlog -work work -vopt -stats=none {D:/IEEE Digital/Final Project/ModelSim/Sign_Extend.v}
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module Sign_Extend
+
+Top level modules:
+	Sign_Extend
+
+} {} {}}
