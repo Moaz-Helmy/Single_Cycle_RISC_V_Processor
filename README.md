@@ -5,5 +5,4 @@ In this project, I implemented the famous **32-bit RISCV Processor**.  It's a si
 
 # Block Diagram
 
-
-![Diagram](Diagram.jpg)
+![Diagram](Single_Cycle_RISC_V_Processor\Diagram.jpg)
