@@ -60,7 +60,7 @@ below.
 
 To validate the success of the written RTL, the processor was tested to generate and store the first ten numbers of the Fibonacci sequence by writing a test bench that loads the instruction memory with the machine code corresponding to the following C code.
 
-```
+```C
 #include <iostream>
 using namespace std;
 int main()
@@ -86,7 +86,7 @@ int main()
 ## Loading the Machine code into the instruction Memory
 
 The machine code was loaded into the instruction memory using the command ``` $readmemh ```. the command was used to load the test program "[FibSeries](https://github.com/Moaz-Helmy/Single_Cycle_RISC_V_Processor/blob/master/Test%20Program/program.txt)" into the instruction memory as follows.
-```
+```Verilog
 /*loading test program into the instruction memory*/
     initial
 	$readmemh("program.txt",InsMem,0,20);
