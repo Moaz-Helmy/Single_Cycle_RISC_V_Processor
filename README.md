@@ -85,7 +85,7 @@ int main()
 
 ## Loading the Machine code into the instruction Memory
 
-The machine code was loaded into the instruction memory using the command ```Verilog $readmemh ```. the command was used to load the test program "[FibSeries](https://github.com/Moaz-Helmy/Single_Cycle_RISC_V_Processor/blob/master/Test%20Program/program.txt)" into the instruction memory as follows.
+The machine code was loaded into the instruction memory using the command ``` $readmemh ```. the command was used to load the test program "[FibSeries](https://github.com/Moaz-Helmy/Single_Cycle_RISC_V_Processor/blob/master/Test%20Program/program.txt)" into the instruction memory as follows.
 ```Verilog
 /*loading test program into the instruction memory*/
     initial
